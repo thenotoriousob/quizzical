@@ -1,0 +1,293 @@
+:root {
+    --gold-color: #BF9B30;
+    --black-color: #171717;
+    --white-color: #F5F7FB;
+    --body-background-color: #F5F7FB;
+    --font-family: "Inter", sans-serif;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Typography - Start */
+
+.error h2 {
+    font-size: 1.5rem;
+}
+
+.selection-help,
+.btn,
+.score {
+    font-size: 1.25rem;
+}
+
+.selection-label, .response-label {
+    font-size: 1rem;
+}
+
+.error h2,
+.selection-help,
+.score,
+.selection-label,
+.response-label {
+    font-weight: 700;
+}
+
+.selection-help,
+.selection-label,
+.score {
+    text-shadow: 1px 1px 0px var(--gold-color);
+}
+
+.error,
+footer,
+.selection-help,
+.button-container,
+.response-label {
+    text-align: center;
+}
+
+/* Typography - End */
+
+/* GENERAL STYLES - START */
+
+body {
+    background-color: var(--body-background-color);
+}
+
+body, button {
+    font-family: var(--font-family);
+}
+
+.container {
+    max-width: 950px;
+    margin: 0 auto;
+    border: 2px solid var(--black-color);
+    border-radius: 14px;
+}
+
+.btn {
+    color: var(--black-color);
+    background-color: var(--gold-color);
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    position: relative;
+}
+
+.start-btn, .check-btn {
+    padding: 1.25em;
+}
+
+.btn,
+.error a,
+.response-label {
+    cursor: pointer;
+}
+
+.logo {
+    width: 100%;
+    height: 275px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px 10px 0 0;
+    display: block;
+}
+
+.error h2 {
+    color: red;
+    padding: 1.5em;
+}
+
+.error a {
+    color: var(--black-color);
+    text-decoration: none;
+    margin-bottom: 1em;
+    display: inline-block;
+}
+
+footer {
+    background-color: var(--black-color);
+    color: var(--gold-color);
+    padding: 2em;
+    border-radius: 0 0 0.5em 0.5em;
+}
+
+
+/* Button on hover border animation - START */
+/* Remove the default on focus style of a button as it was overriding the animation */
+.btn:focus {
+    outline: none;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.btn:hover::after, .box:hover::before,
+.btn:focus::after, .box:focus::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-color);
+    background-image: conic-gradient(from var(--angle), var(--black-color), var(--gold-color), var(--black-color));
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 3px;
+    box-sizing: content-box;
+    border-radius: 10px;
+    animation: 2s spin linear infinite;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    } to {
+        --angle: 360deg;
+    }
+}
+
+/* Button on hover border animation - END */
+
+/* GENERAL STYLES - END */
+
+/* SELECTION PAGE STYLES - START */
+
+.selection-container,
+.selection-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.selection-container {
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+}
+
+.selection-form {
+    gap: 0.75em;
+    max-width: 400px;
+}
+
+.selection-help {
+    color: var(--black-color);
+    margin-bottom: 1em;
+}
+
+.selection-label {
+    align-self: flex-start;
+}
+
+select, input {
+    padding: 0.5em;
+    border-radius: 10px;
+    line-height: 1.5;
+    margin-bottom: 0.5em;
+    border: 1px solid var(--gold-color);
+}
+
+/* SELECTION PAGE STYLES - END */
+
+/* QUIZ PAGE STYLES - START */
+
+.question-container {
+    border-bottom: 1px solid #DBDEF0;
+    padding: 2em 1em 1em;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.question {
+    margin-bottom: 1em;
+}
+
+.button-container {
+    margin: 1em;
+}
+
+.check-btn {
+    margin: 1.5em;
+}
+
+.response-container,
+.response-label {
+    display: flex;
+}
+
+.response-container {
+    flex-direction: column;
+    align-items: space-between;
+    gap: 1.5em;
+    margin-bottom: 1em;
+}
+
+input[type="radio"] {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+}
+
+.response-label {
+    min-height: 20px;
+    background-color: var(--black-color);
+    justify-content: center;
+    align-items: center;
+    color: var(--gold-color);
+    padding: 1em 2em;
+    border-radius: 0.5em;
+    border: 2px solid var(--gold-color);
+    width: 100%;
+    height: 100%;
+}
+
+/* Don't apply hover state when radio is disabled */
+.response-label:hover:not([disabled]),
+.response-label:focus:not([disabled]),
+/* Apply same style when radio is selected via mouse, or in focus via keyboard */
+input[type="radio"]:checked+label,
+input[type="radio"]:focus+label {
+    border: 2px solid var(--gold-color);
+    background-color: var(--gold-color);
+    color: var(--black-color);
+}
+
+.correct-answer, input[type="radio"]:checked+.correct-answer {
+    background-color: #94D7A2;
+    color: var(--black-color);
+}
+
+input[type="radio"]:checked+.wrong-answer {
+    background-color: #F8BCBC;
+    color: var(--black-color);
+}
+
+input[type="radio"]:disabled+label {
+    opacity: 0.5;
+}
+
+/* QUIZ PAGE STYLES - END */
+
+
+/* MEDIA QUERIES */
+
+@media (min-width: 800px) {
+    .response-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    /* So the buttons evenly size instead of shrinking to the smallest for the content */
+    .response-container > * {
+        flex: 1;
+    }
+
+}
