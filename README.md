@@ -29,3 +29,23 @@ I added an animation on Hover of the buttons for something a bit different, and 
 me to @property and @keyfranes. I made sure that this was still accessible from the keyboard.
 
 I have added in error handling in case anything goes wrong with the API call.
+
+# Installation
+
+Clone the repo
+
+```sh
+https://github.com/thenotoriousob/quizzical.git
+```
+
+Install NPM packages
+
+```sh
+npm install
+```
+
+Run the application
+
+```sh
+npm run dev
+```
